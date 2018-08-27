@@ -1,0 +1,19 @@
+.feature {
+  width: 100%;
+  height: 400px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.demo-text {
+  margin: auto;
+  font-size: 110%;
+}
+
+.demo-text ul {
+  text-align: left;
+}

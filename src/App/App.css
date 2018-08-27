@@ -1,0 +1,172 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  /* animation: App-logo-spin infinite 20s linear; */
+  height: 50px;
+  margin: 0 20px;
+}
+
+.App-logo-desc {
+  position: absolute;
+  height: 40px;
+  padding: 0 5px;
+  left: 54%;
+  top: 40px;
+  background-color: #a9a9a9;
+  border-radius: 5px;
+}
+
+.App-header {
+  /* background: url('../assets/images/pebble-beach.JPG'); */
+  background-color: white;
+  /* background-position: center;
+  background-size: 100% auto;
+  background-repeat: no-repeat; */
+  height: 75px;
+  padding-top: 10px;
+  color: #359199;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.Header-title {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.App-header-sub {
+  margin: 0 auto;
+}
+
+.App-title {
+  font-size: 300%;
+  line-height: 50px;
+  margin: 0;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Home-nav {
+  position: relative;
+  margin: 0 auto;
+  padding: 15px 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Home-nav-filter {
+  padding: 0;
+  margin: 0;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  list-style-type: none;
+}
+
+.Home-nav-filter-item {
+  margin: 20px 20px;
+  padding: 5px;
+  max-height: 30px;
+  border-radius: 5px;
+  color: #778899;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Home-nav-filter-item:hover {
+  background-color: white;
+  color: black;
+}
+
+.search-bar-container {
+  height: 40px;
+  width: 50%;
+  margin: auto;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.search-bar-input {
+  border: none;
+  height: 40px;
+  width: 90%;
+  outline: none;
+  margin: 0 20px;
+  padding: 0;
+  font-size: 140%;
+  line-height: 40px;
+}
+
+.Home-content {
+  min-height: calc(100vh - 646px);
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.content {
+  width: 100%;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+.postItem-container:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  background: white;
+  transition: 0.3s ease-in-out;
+}
+
+@media(max-width: 650px) {
+  /* .App-title {
+    font-size: 200%;
+  } */
+
+  .postItem-container {
+    width: calc(1000vw - 20px) !important;
+  }
+
+  .App-logo {
+    height: 40px;
+  }
+
+  .Header-title {
+    height: 50px;
+  }
+
+  .App-header {
+    min-height: 100px;
+  }
+}
+
+@media(max-width: 475px) {
+  .App-title {
+    font-size: 170%;
+  }
+}
