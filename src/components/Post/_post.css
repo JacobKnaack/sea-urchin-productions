@@ -1,4 +1,5 @@
 .post-container {
+  z-index: 100;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
@@ -10,6 +11,7 @@
 .post-modal {
   height: 95%;
   width: 90%;
-  margin: 0 auto;
-  background-color: white;
+  margin: 20px auto;
+  background-color: white; 
+  overflow-y: auto;
 }
