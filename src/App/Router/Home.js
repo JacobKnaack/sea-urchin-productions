@@ -60,16 +60,15 @@ class Home extends React.Component {
         <nav className="Home-nav">
           <ul className="Home-nav-filter">
             <li className="Home-nav-filter-item">
-              {/* <Link to='/'>Home</Link> */}
               <p className="filter">Most Recent</p>
             </li>
             <li className="Home-nav-filter-item">
-              {/* <Link to='/blog'>Videos</Link> */}
               <p className="filter">Videos</p>
             </li>
           </ul>
           <div className="search-bar-container">
-            <input className="search-bar-input" placeholder='search' />
+            <i className="fas fa-search search-icon"></i>
+            <input className="search-bar-input" placeholder='...search' />
           </div>
         </nav>
         <div className="Home-content">

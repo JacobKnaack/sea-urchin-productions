@@ -28,9 +28,11 @@ const PostItem = (props) => {
     },
 
     title: {
-      fontFamily: "'Chau Philomene One', sans-serif",
+      fontFamily: "'Knewave', cursive",
+      color: '#3F89B0',
       fontSize: '200%',
       margin: '10px 0',
+      textAlign: 'center',
     },
 
     header: {
