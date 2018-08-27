@@ -83,6 +83,7 @@ const PostItem = (props) => {
             >
               <img
                 src={postData.channel.snippet.thumbnails.default.url}
+                alt={postData.channel.snippet.thumbnails.default.url}
                 style={Styles.headerImg}
               />
               <h3 style={Styles.headerText}>
@@ -101,7 +102,7 @@ const PostItem = (props) => {
               className="article header"
               style={Styles.header}
             >
-              <img style={Styles.headerImg} src={postData.author.profile_image} alt="profile image" />
+              <img style={Styles.headerImg} src={postData.author.profile_image} alt={postData.author.email} />
               <h3 style={Styles.headerText}>
                 {postData.author.first_name} {postData.author.last_name} | {new Date(postData.published).toString()}
               </h3>

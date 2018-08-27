@@ -30,10 +30,9 @@ class App extends Component {
       }
     })
 
-    fetch(`https://www.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_YOUTUBE_API_KEY}&channelId=UCG71-DN0mFrGvoLrtuSRLwA&part=snippet,id&order=date&maxResults=20`)
+    fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDleGdEZLlURoFgCDs6OXFMjSCpvi3gfIw&channelId=UCG71-DN0mFrGvoLrtuSRLwA&part=snippet,id&order=date&maxResults=20`)
       .then(resp => resp.json())
       .then((resp) => {
-        //this.setState({video: resp.results});
         this.setState({ channelContent: resp.items })
       })
     butter.post.list()
