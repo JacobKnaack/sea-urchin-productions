@@ -27,10 +27,24 @@ class Post extends React.Component {
       <div className='post-container'>
         <div className='post-modal'>
           <div className='postHeading'>
-            <h3>Sea Urchin Players</h3>
+            <h2>Sea Urchin Players</h2>
           </div>
-          {}
-          <h3>Post Data!!</h3>
+          {this.state.type === 'article'
+            ? <div className="post-article">
+              <h3>{postData.title}</h3>
+              <h4>{postData.author.first_name} {postData.author.last_name}</h4>
+              <h5>{postData.summary}</h5>
+              <div dangerouslySetInnerHTML={{ __html: postData.body }} />
+            </div>
+            : <div className="post-video">
+              <iframe
+                className="embeddedVideo"
+                title="Unique Title"
+                src={`https://www.youtube.com/embed/${postData.video.id.videoId}`}
+              />
+              <p>{postData.video.snippet.description}</p>
+            </div>
+          }
         </div>
       </div>
     )

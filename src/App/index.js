@@ -25,6 +25,8 @@ class App extends Component {
     window.addEventListener('popstate', () => {
       if (!window.location.href.includes('?post')) {
         this.setState({ selectedPost: {} })
+      } else {
+        this.setState({ selectedPost: window.history.state })
       }
     })
 
