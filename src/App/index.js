@@ -4,6 +4,7 @@ import Butter from 'buttercms'
 // import ContentList from '../components/ContentList'
 import Post from '../components/Post'
 import Footer from '../components/Footer'
+import Messenger from '../components/Messenger'
 import Router from './Router'
 import './App.css'
 
@@ -72,6 +73,7 @@ class App extends Component {
           : null
         }
         <Footer />
+        <Messenger />
       </div>
     )
   }
