@@ -4,9 +4,10 @@ import { Switch, Route } from 'react-router-dom'
 
 import Home from './Home'
 import Blog from './Blog'
+import BlogPost from './BlogPost'
 
 const Router = (props) => {
-  let { channelContent, blogContent, selectPost } = props
+  let { channelContent, blogContent, selectPost, selectedPost } = props
 
   return (
     <Switch>
@@ -16,6 +17,9 @@ const Router = (props) => {
       <Route path='/blog' render={(props) => (
         <Blog {...props} channelContent={channelContent} />
       )} />
+      <Route path='/post/:postId' render={(props) => (
+        <BlogPost {...props} selectedPost={selectedPost} />
+      )} />
     </Switch>
   )
 }
@@ -24,6 +28,7 @@ Router.propTypes = {
   channelContent: PropTypes.array,
   blogContent: PropTypes.object,
   selectPost: PropTypes.func,
+  selectedPost: PropTypes.object,
 }
 
 export default Router

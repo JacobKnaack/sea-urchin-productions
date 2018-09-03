@@ -62,6 +62,7 @@ class App extends Component {
             selectPost={this.selectPost}
             channelContent={this.state.channelContent}
             blogContent={this.state.blogContent}
+            selectedPost={this.state.selectedPost}
           />
         </div>
 

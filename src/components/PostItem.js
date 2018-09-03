@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const PostItem = (props) => {
   const { type, postData, selectPost } = props
   let backgroundImage
-  if (postData.featured_image) {
+  if (type === 'article') {
     backgroundImage = postData.featured_image
   } else {
     backgroundImage = postData.video.snippet.thumbnails.high.url
@@ -104,7 +104,9 @@ const PostItem = (props) => {
               className="article header"
               style={Styles.header}
             >
-              <img style={Styles.headerImg} src={postData.author.profile_image} alt={postData.author.email} />
+              {postData.author.profile_image
+                ? <img style={Styles.headerImg} src={postData.author.profile_image} alt={postData.author.email} />
+                : <i style={{ fontSize: '350%', lineHeight: '50px' }} className="far fa-user-circle"></i>}
               <h3 style={Styles.headerText}>
                 {postData.author.first_name} {postData.author.last_name} | {new Date(postData.published).toString()}
               </h3>
