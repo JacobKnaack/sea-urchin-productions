@@ -5,8 +5,11 @@ class Messenger extends React.Component {
     super()
     this.state = {
       open: false,
+      email: '',
+      message: '',
     }
 
+    this.handleInput = this.handleInput.bind(this)
     this.openMessenger = this.openMessenger.bind(this)
     this.closeMessenger = this.closeMessenger.bind(this)
   }
@@ -42,12 +45,6 @@ class Messenger extends React.Component {
         fontSize: '150%',
         left: '2%',
       },
-      // filter: {
-      //   height: '100%',
-      //   width: '100%',
-      //   filter: 'blur(2px)',
-      //   backgroundColor: 'rgba(0,0,0,0.6)',
-      // },
 
       messageForm: {
         height: '100%',
@@ -62,11 +59,40 @@ class Messenger extends React.Component {
         color: 'white',
       },
 
-      input: {
+      email: {
         outline: 'none',
         border: 'none',
         margin: '10px auto',
         width: '100%',
+        borderRadius: '5px',
+        fontSize: '120%',
+      },
+
+      message: {
+        outline: 'none',
+        border: 'none',
+        margin: '10px auto',
+        width: '100%',
+        borderRadius: '5px 5px 0 0',
+        height: '200px',
+        fontSize: '120%',
+      },
+
+      formInputs: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        height: '80%',
+      },
+
+      sendBtn: {
+        width: '100px',
+        margin: '0 auto',
+        backgroundColor: '#d3d3d3',
+        border: 'thin solid white',
+        color: 'white',
+        fontSize: '150%',
+        borderRadius: '5px',
       }
     }
 
@@ -98,8 +124,8 @@ class Messenger extends React.Component {
           : <form
             className='messenger-form'
             style={Styles.messageForm}
-          // action="https://formspree.io/jacobknck@gmail.com"
-          // method="POST"
+            action="https://formspree.io/jacobknck@gmail.com"
+            method="POST"
           >
             <i
               className="fas fa-times"
@@ -107,22 +133,37 @@ class Messenger extends React.Component {
               style={Styles.closeIcon}>
             </i>
             <p style={Styles.formPrompt}>This blog is in a development cycle!  Send the developer a message:</p>
-            <input
-              type='text'
-              name='email'
-              placeholder='...Email'
-              style={Styles.input}
-            />
-            <textarea
-              name='message'
-              placeholder='...Message'
-              style={Styles.input}
-            />
-            <input type="submit" value="Send" />
+            <div className='formInputs' style={Styles.formInputs}>
+              <input
+                type='text'
+                name='email'
+                value={this.state.email}
+                placeholder='Email'
+                style={Styles.email}
+                onChange={this.handleInput}
+              />
+              <textarea
+                name='message'
+                value={this.state.message}
+                placeholder='Message'
+                style={Styles.message}
+                onChange={this.handleInput}
+              />
+              <input
+                type="submit"
+                value="Send"
+                style={Styles.sendBtn}
+              />
+            </div>
           </form>
         }
       </div>
     )
+  }
+
+  handleInput(e) {
+    const { name, value } = e.target
+    this.setState({ [name]: value })
   }
 
   openMessenger() {
