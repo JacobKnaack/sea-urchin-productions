@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Butter from 'buttercms'
 // import Feature from '../components/Feature'
 // import ContentList from '../components/ContentList'
-import Post from '../components/Post'
+// import Post from '../components/Post'
 import Footer from '../components/Footer'
 import Messenger from '../components/Messenger'
 import Router from './Router'
@@ -16,20 +16,21 @@ class App extends Component {
     this.state = {
       channelContent: [],
       blogContent: {},
-      selectedPost: {},
+      // selectedPost: {},
     }
 
-    this.selectPost = this.selectPost.bind(this)
+    // this.selectPost = this.selectPost.bind(this)
   }
 
   componentWillMount() {
-    window.addEventListener('popstate', () => {
-      if (!window.location.href.includes('?post')) {
-        this.setState({ selectedPost: {} })
-      } else {
-        this.setState({ selectedPost: window.history.state })
-      }
-    })
+    // window.addEventListener('popstate', () => {
+    //   if (!window.location.href.includes('/post')) {
+    //     this.setState({ selectedPost: {} })
+    //   } else {
+    //     this.setState({ selectedPost: window.history.state })
+    //   }
+    // })
+
 
     fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDleGdEZLlURoFgCDs6OXFMjSCpvi3gfIw&channelId=UCG71-DN0mFrGvoLrtuSRLwA&part=snippet,id&order=date&maxResults=20`)
       .then(resp => resp.json())
@@ -62,35 +63,27 @@ class App extends Component {
             selectPost={this.selectPost}
             channelContent={this.state.channelContent}
             blogContent={this.state.blogContent}
-            selectedPost={this.state.selectedPost}
+          // selectedPost={this.state.selectedPost}
           />
         </div>
-
-        {Object.keys(this.state.selectedPost).length
-          ? <Post
-            type={this.state.selectedPost.video ? 'video' : 'article'}
-            postData={this.state.selectedPost}
-          />
-          : null
-        }
         <Footer />
         <Messenger />
       </div>
     )
   }
 
-  selectPost(data) {
-    this.setState({
-      selectedPost: data
-    }, () => {
-      if (data.video) {
-        window.history.pushState({ post: data }, null, `?post=${data.video.id.videoId}`)
-      }
-      if (data.url) {
-        window.history.pushState({ post: data }, null, `?post=${data.slug}`)
-      }
-    })
-  }
+  // selectPost(data) {
+  //   this.setState({
+  //     selectedPost: data
+  //   }, () => {
+  //     if (data.video) {
+  //       window.history.pushState({ post: data }, null, `/post/${data.video.id.videoId}`)
+  //     }
+  //     if (data.url) {
+  //       window.history.pushState({ post: data }, null, `/post/${data.slug}`)
+  //     }
+  //   })
+  // }
 }
 
 export default App

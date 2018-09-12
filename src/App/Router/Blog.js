@@ -5,7 +5,7 @@ import ContentList from '../../components/ContentList'
 class Blog extends React.Component {
   render() {
     return (
-      <div>
+      <div className="blog-container">
         <ContentList channelContent={this.props.channelContent} />
       </div>
     )

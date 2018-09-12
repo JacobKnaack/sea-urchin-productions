@@ -1,6 +1,8 @@
 import React from 'react'
-import dateFormat from 'dateformat'
 import PropTypes from 'prop-types'
+import dateFormat from 'dateformat'
+import { Link } from 'react-router-dom'
+
 
 const PostItem = (props) => {
   const { type, postData, selectPost } = props
@@ -27,6 +29,7 @@ const PostItem = (props) => {
       transition: '0.3s ease-in-out',
       borderRadius: '10px',
       cursor: 'pointer',
+      textDecoration: 'none',
     },
 
     title: {
@@ -50,6 +53,8 @@ const PostItem = (props) => {
       lineHeight: 'px',
       borderRadius: '50px',
       fontSize: '350%',
+      color: '#ffffff',
+      marginRight: '10px',
     },
 
     headerImg: {
@@ -88,11 +93,16 @@ const PostItem = (props) => {
     }
   }
 
+  const postId = () => {
+    if (type === 'video') return postData.video.id.videoId
+    if (type === 'article') return postData.url
+  }
   return (
-    <div
+    <Link
       className="postItem-container"
       style={Styles.container}
-      onClick={() => selectPost(postData)}
+      to={`/post/${postId()}`}
+    // onClick={() => selectPost(postData)}
     >
       {type === 'video'
         ? (
@@ -146,7 +156,7 @@ const PostItem = (props) => {
             </div>
           </div>
         )}
-    </div>
+    </Link>
   )
 }
 

@@ -14,6 +14,20 @@ class Home extends React.Component {
     }
   }
 
+  componentWillMount() {
+    if (Object.keys(this.props.blogContent).length) {
+      this.setState({
+        blogItems: [...this.props.blogContent.data, this.props.blogContent.meta],
+      })
+    }
+
+    if (this.props.channelContent.length) {
+      this.setState({
+        channelItems: [...this.props.channelContent],
+      })
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.blogContent !== this.props.blogContent) {
       this.setState({
@@ -32,6 +46,7 @@ class Home extends React.Component {
     const displayItems = () => {
       const ci = []
       const bi = []
+      let result = []
       let channelInfo = {}
       for (var i in this.state.channelItems) {
         if (this.state.channelItems[i].id.kind === 'youtube#video') {
@@ -41,7 +56,7 @@ class Home extends React.Component {
         }
       }
       for (let item in ci) {
-        ci[item] = { video: ci[item], channel: channelInfo }
+        ci[item] = { video: ci[item], channel: channelInfo, published: ci[item].snippet.publishedAt }
       }
 
       for (var j in this.state.blogItems) {
@@ -50,20 +65,28 @@ class Home extends React.Component {
         }
       }
 
-
-      return [...ci, ...bi]
+      result = [...ci, ...bi]
+      return result.sort((a, b) => {
+        return new Date(b.published) - new Date(a.published)
+      })
     }
 
     return (
       <div>
-        <Feature channelContent={this.props.channelContent} />
+        <Feature
+          channelContent={this.props.channelContent}
+          blogData={this.props.blogContent.data}
+        />
         <nav className="Home-nav">
           <ul className="Home-nav-filter">
             <li className="Home-nav-filter-item">
-              <p className="filter">Most Recent</p>
+              <p className="filter-name">Most Recent</p>
             </li>
             <li className="Home-nav-filter-item">
-              <p className="filter">Videos</p>
+              <p className="filter-name">Videos</p>
+            </li>
+            <li className="Home-nav-filter-item">
+              <p className="filter-name">Reunions</p>
             </li>
           </ul>
           <div className="search-bar-container">

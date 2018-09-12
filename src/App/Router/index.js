@@ -7,8 +7,7 @@ import Blog from './Blog'
 import BlogPost from './BlogPost'
 
 const Router = (props) => {
-  let { channelContent, blogContent, selectPost, selectedPost } = props
-
+  let { channelContent, blogContent, selectPost } = props
   return (
     <Switch>
       <Route exact path='/' render={(props) => (
@@ -18,7 +17,7 @@ const Router = (props) => {
         <Blog {...props} channelContent={channelContent} />
       )} />
       <Route path='/post/:postId' render={(props) => (
-        <BlogPost {...props} selectedPost={selectedPost} />
+        <BlogPost {...props} posts={[].concat.apply([], [blogContent.data, channelContent])} />
       )} />
     </Switch>
   )
