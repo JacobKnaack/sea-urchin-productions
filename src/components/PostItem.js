@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 const PostItem = (props) => {
-  const { type, postData, selectPost } = props
+  const { type, postData } = props
   let backgroundImage, pubDate
   if (type === 'article') {
     backgroundImage = postData.featured_image
@@ -102,7 +102,7 @@ const PostItem = (props) => {
       className="postItem-container"
       style={Styles.container}
       to={`/post/${postId()}`}
-    // onClick={() => selectPost(postData)}
+    // onClick={() => selectPost(postData)} THIS CAME FROM PROPS, Grab it from line 8 if you need it.
     >
       {type === 'video'
         ? (

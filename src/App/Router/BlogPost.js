@@ -27,12 +27,14 @@ class BlogPost extends React.Component {
           }
 
           if (postData[post].id && postData[post].id.videoId === selectedPost) {
-            // data = {
-            //   etag: postData[post].etag,
-            //   videoId: postData[post].id.videoId,
-            //   snippet: postData[post].snippet,
-            // }
-            data = postData[post].snippet
+            data = {
+              etag: postData[post].etag,
+              id: postData[post].id.videoId,
+              title: postData[post].snippet.title,
+              description: postData[post].snippet.description,
+              channelId: postData[post].snippet.channelId,
+              publishedAt: postData[post].snippet.publishedAt,
+            }
           }
         } else data = 'loading'
       }
@@ -50,7 +52,6 @@ class BlogPost extends React.Component {
       }
     }
 
-    console.log(selectedPostData())
     return (
       <div
         className="blogPost-container"
@@ -67,7 +68,13 @@ class BlogPost extends React.Component {
           </div>
           : <div className="video-post">
             <h2>{selectedPostData().title}</h2>
-
+            <iframe
+              title={selectedPostData().title}
+              src={`https://www.youtube.com/embed/${selectedPostData().id}`}
+              width="80%"
+              height="400px"
+            />
+            <p>{selectedPostData().description}</p>
           </div>
         }
       </div>
