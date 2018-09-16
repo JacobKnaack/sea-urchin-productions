@@ -9,10 +9,15 @@ class Home extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      filter: '',
       channelItems: [],
-      blogItems: []
+      blogItems: [],
+      filter: 'recent',
+      query: '',
     }
+
+    this.setFilter = this.setFilter.bind(this)
+    this.filterBlogItems = this.filterBlogItems.bind(this)
+    this.categoryFilter = this.categoryFilter.bind(this)
   }
 
   componentWillMount() {
@@ -46,7 +51,7 @@ class Home extends React.Component {
   render() {
     const displayItems = () => {
       const ci = []
-      const bi = []
+      const bi = this.filterBlogItems()
       let result = []
       let channelInfo = {}
       for (var i in this.state.channelItems) {
@@ -60,18 +65,19 @@ class Home extends React.Component {
         ci[item] = { video: ci[item], channel: channelInfo, published: ci[item].snippet.publishedAt }
       }
 
-      for (var j in this.state.blogItems) {
-        if (this.state.blogItems[j].url) {
-          bi.push(this.state.blogItems[j])
-        }
-      }
-
-      result = [...ci, ...bi]
+      result = this.categoryFilter(ci, bi)
       return result.sort((a, b) => {
         return new Date(b.published) - new Date(a.published)
       })
     }
 
+    const isNavItemActive = (btnName) => {
+      if (this.state.filter === btnName) {
+        return 'Home-nav-filter-item active'
+      }
+
+      return 'Home-nav-filter-item'
+    }
     return (
       <div>
         <Feature
@@ -80,19 +86,24 @@ class Home extends React.Component {
         />
         <nav className="Home-nav">
           <ul className="Home-nav-filter">
-            <li className="Home-nav-filter-item">
-              <p className="filter-name">Most Recent</p>
+            <li className={isNavItemActive('recent')} onClick={() => this.setFilter('recent')}>
+              <p className="filter-name">Recent</p>
             </li>
-            <li className="Home-nav-filter-item">
+            <li className={isNavItemActive('videos')} onClick={() => this.setFilter('videos')}>
               <p className="filter-name">Videos</p>
             </li>
-            <li className="Home-nav-filter-item">
+            <li className={isNavItemActive('reunions')} onClick={() => this.setFilter('reunions')}>
               <p className="filter-name">Reunions</p>
             </li>
           </ul>
           <div className="search-bar-container">
             <i className="fas fa-search search-icon"></i>
-            <input className="search-bar-input" placeholder='...search' />
+            <input
+              className="search-bar-input"
+              placeholder='...search'
+              name="query"
+              value={this.state.query}
+              onChange={(e) => this.setState({ query: e.target.value })} />
           </div>
         </nav>
         <div className="Home-content">
@@ -107,11 +118,64 @@ class Home extends React.Component {
       </div>
     )
   }
+
+  setFilter(string) {
+    this.setState({
+      filter: string
+    })
+  }
+
+  categoryFilter(ci, bi) {
+    if (this.state.query) {
+      const queryResult = []
+      for (var i in ci) {
+        if (ci[i].video.snippet.title.includes(this.state.query)) {
+          queryResult.push(ci[i])
+        }
+      }
+      for (var j in bi) {
+        if (bi[j].title.includes(this.state.query)) {
+          queryResult.push(bi[j])
+        }
+      }
+
+      return queryResult
+    }
+    switch (this.state.filter) {
+      case 'videos':
+        return [...ci]
+      case 'reunions':
+        return [...bi]
+      default:
+        return [...ci, ...bi]
+    }
+  }
+
+  filterBlogItems() {
+    const filteredItems = []
+    for (var i in this.state.blogItems) {
+      if (this.state.blogItems[i].url) {
+        if (this.state.filter === 'reunions') {
+          for (var j in this.state.blogItems[i].categories) {
+            if (this.state.blogItems[i].categories[j].name === 'Reunion') {
+              filteredItems.push(this.state.blogItems[i])
+            }
+          }
+        } else {
+          filteredItems.push(this.state.blogItems[i])
+        }
+      }
+    }
+
+    return filteredItems
+  }
 }
 
 Home.propTypes = {
   channelContent: PropTypes.array,
   blogContent: PropTypes.object,
+  filter: PropTypes.string,
+  setFilter: PropTypes.func,
 }
 
 export default Home

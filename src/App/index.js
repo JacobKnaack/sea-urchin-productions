@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react'
+import React, { Component } from 'react'
 import Butter from 'buttercms'
 // import Feature from '../components/Feature'
 // import ContentList from '../components/ContentList'
@@ -9,8 +9,6 @@ import Router from './Router'
 import './App.css'
 
 const butter = Butter('283702b3276b10a88e38bf31e3356505f663bb1b')
-const Context = createContext()
-const { Provider } = Context
 
 class App extends Component {
   constructor(props) {
@@ -18,11 +16,7 @@ class App extends Component {
     this.state = {
       channelContent: [],
       blogContent: {},
-      filterQuery: '',
-      filterLink: '',
     }
-
-    this.setFilterLink = this.setFilterLink.bind(this)
   }
 
   componentWillMount() {
@@ -53,23 +47,15 @@ class App extends Component {
         </div>
 
         <div className="content">
-          <Provider value={{ filterQuery: this.state.filterQuery, filterLink: this.state.filterLink, setFilterLink: this.setFilterLink }}>
-            <Router
-              channelContent={this.state.channelContent}
-              blogContent={this.state.blogContent}
-            />
-          </Provider>
+          <Router
+            channelContent={this.state.channelContent}
+            blogContent={this.state.blogContent}
+          />
         </div>
         <Footer />
         <Messenger />
       </div>
     )
-  }
-
-  setFilterLink(filter) {
-    this.setState({
-      filterLink: filter,
-    })
   }
 }
 

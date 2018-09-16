@@ -11,7 +11,11 @@ const Router = (props) => {
   return (
     <Switch>
       <Route exact path='/' render={(props) => (
-        <Home {...props} channelContent={channelContent} blogContent={blogContent} />
+        <Home
+          {...props}
+          channelContent={channelContent}
+          blogContent={blogContent}
+        />
       )} />
       <Route path='/blog' render={(props) => (
         <Blog {...props} channelContent={channelContent} />
@@ -26,8 +30,6 @@ const Router = (props) => {
 Router.propTypes = {
   channelContent: PropTypes.array,
   blogContent: PropTypes.object,
-  selectPost: PropTypes.func,
-  selectedPost: PropTypes.object,
 }
 
 export default Router

@@ -87,8 +87,13 @@
 }
 
 .Home-nav-filter-item:hover {
+  background-color: #a9a9a9;
+  color: white;
+}
+
+.Home-nav-filter-item.active {
+  color: #0F70B2;
   background-color: white;
-  color: black;
 }
 
 .search-bar-container {
