@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 // import { Link } from 'react-router-dom'
 import Feature from '../../components/Feature'
 import PostItem from '../../components/PostItem'
@@ -100,7 +101,6 @@ class Home extends React.Component {
               key={postData.video ? postData.video.id.videoId : postData.url}
               type={postData.video ? "video" : "article"}
               postData={postData}
-              selectPost={this.props.selectPost}
             />
           ))}
         </div>
@@ -112,7 +112,6 @@ class Home extends React.Component {
 Home.propTypes = {
   channelContent: PropTypes.array,
   blogContent: PropTypes.object,
-  selectPost: PropTypes.func,
 }
 
 export default Home

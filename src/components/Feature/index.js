@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import './_feature.css'
 import './_carousel.css'
 
@@ -21,22 +22,31 @@ class Carousel extends React.Component {
   }
 
   render() {
+    const { items } = this.props
+    const { activeIndex } = this.state
+
     return (
       <div
         className="Feature-carousel"
         onMouseEnter={() => this.setState({ navBtns: 'active' })}
         onMouseLeave={() => this.setState({ navBtns: 'inactive' })}
       >
+        <Link
+          className={`feature-link-btn ${this.state.navBtns}`}
+          to={`/post/${items[activeIndex].link}`}
+        >
+          <i className="far fa-hand-pointer carousel-icon"></i>
+        </Link>
         <div
           className={`prev carousel-btn ${this.state.navBtns}`}
           onClick={this.prevIndex}
         >
           <i className="fas fa-angle-left carousel-icon"></i>
         </div>
-        {this.props.items.map(item => {
+        {items.map(item => {
           let itemImageUrl = item.imageUrl
           let displayClasses = 'carousel-display-item'
-          if (this.props.items.indexOf(item) === this.state.activeIndex) {
+          if (items.indexOf(item) === this.state.activeIndex) {
             displayClasses += ' active'
           }
           if (!itemImageUrl) {
@@ -123,6 +133,7 @@ const Feature = (props) => {
       result = {
         imageUrl: sortedContent[0].snippet.thumbnails.high.url,
         description: sortedContent[0].snippet.description,
+        id: sortedContent[0].id.videoId,
       }
     }
 
@@ -138,19 +149,19 @@ const Feature = (props) => {
             imageUrl: recentPosts()[0].featured_image,
             title: recentPosts()[0].title,
             description: recentPosts()[0].summary,
-            link: null
+            link: recentPosts()[0].url
           },
           {
             imageUrl: recentPosts()[1].featured_image,
             title: recentPosts()[1].title,
             description: recentPosts()[1].summary,
-            link: null,
+            link: recentPosts()[1].url,
           },
           {
             imageUrl: recentVideo().imageUrl,
             title: 'Recent Videos',
             description: recentVideo().description,
-            link: null,
+            link: recentVideo().id,
           },
         ]}
       />

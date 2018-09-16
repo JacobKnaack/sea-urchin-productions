@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createContext } from 'react'
 import Butter from 'buttercms'
 // import Feature from '../components/Feature'
 // import ContentList from '../components/ContentList'
@@ -9,6 +9,8 @@ import Router from './Router'
 import './App.css'
 
 const butter = Butter('283702b3276b10a88e38bf31e3356505f663bb1b')
+const Context = createContext()
+const { Provider } = Context
 
 class App extends Component {
   constructor(props) {
@@ -16,22 +18,14 @@ class App extends Component {
     this.state = {
       channelContent: [],
       blogContent: {},
-      // selectedPost: {},
+      filterQuery: '',
+      filterLink: '',
     }
 
-    // this.selectPost = this.selectPost.bind(this)
+    this.setFilterLink = this.setFilterLink.bind(this)
   }
 
   componentWillMount() {
-    // window.addEventListener('popstate', () => {
-    //   if (!window.location.href.includes('/post')) {
-    //     this.setState({ selectedPost: {} })
-    //   } else {
-    //     this.setState({ selectedPost: window.history.state })
-    //   }
-    // })
-
-
     fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDleGdEZLlURoFgCDs6OXFMjSCpvi3gfIw&channelId=UCG71-DN0mFrGvoLrtuSRLwA&part=snippet,id&order=date&maxResults=20`)
       .then(resp => resp.json())
       .then((resp) => {
@@ -59,12 +53,12 @@ class App extends Component {
         </div>
 
         <div className="content">
-          <Router
-            selectPost={this.selectPost}
-            channelContent={this.state.channelContent}
-            blogContent={this.state.blogContent}
-          // selectedPost={this.state.selectedPost}
-          />
+          <Provider value={{ filterQuery: this.state.filterQuery, filterLink: this.state.filterLink, setFilterLink: this.setFilterLink }}>
+            <Router
+              channelContent={this.state.channelContent}
+              blogContent={this.state.blogContent}
+            />
+          </Provider>
         </div>
         <Footer />
         <Messenger />
@@ -72,18 +66,11 @@ class App extends Component {
     )
   }
 
-  // selectPost(data) {
-  //   this.setState({
-  //     selectedPost: data
-  //   }, () => {
-  //     if (data.video) {
-  //       window.history.pushState({ post: data }, null, `/post/${data.video.id.videoId}`)
-  //     }
-  //     if (data.url) {
-  //       window.history.pushState({ post: data }, null, `/post/${data.slug}`)
-  //     }
-  //   })
-  // }
+  setFilterLink(filter) {
+    this.setState({
+      filterLink: filter,
+    })
+  }
 }
 
 export default App

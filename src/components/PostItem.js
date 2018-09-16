@@ -89,7 +89,20 @@ const PostItem = (props) => {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: "cover",
-      border: 'solid thin #F9008A',
+      borderRadius: '5px',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+    },
+
+    textOverlay: {
+      fontSize: '140%',
+      margin: '0',
+      padding: '10px',
+      textAlign: 'center',
+      lineHeight: '35px',
+      minHeight: '100px',
+      color: '#ffffff',
+      fontFamily: 'Didact Gothic',
+      textShadow: '1px 1px #000000'
     }
   }
 
@@ -127,7 +140,7 @@ const PostItem = (props) => {
               </div>
             </div>
             <div className="video info" style={Styles.info}>
-              <p>{postData.video.snippet.description}</p>
+              <h4 style={Styles.textOverlay}>{postData.video.snippet.description}</h4>
             </div>
           </div>
         )
@@ -140,7 +153,7 @@ const PostItem = (props) => {
             >
               {postData.author.profile_image
                 ? <img style={Styles.headerImg} src={postData.author.profile_image} alt={postData.author.email} />
-                : <i style={Styles.headerIcon} className="far fa-user-circle"></i>}
+                : <i style={Styles.headerIcon} className="fas fa-user-circle"></i>}
               <div style={Styles.headerTextContainer}>
                 <h3 style={Styles.headerText}>
                   {postData.author.first_name} {postData.author.last_name}
@@ -151,8 +164,7 @@ const PostItem = (props) => {
               </div>
             </div>
             <div className='article info' style={Styles.info}>
-              <h4>{postData.summary}</h4>
-              <p>{postData.meta_description}</p>
+              <h4 style={Styles.textOverlay}>{postData.summary}</h4>
             </div>
           </div>
         )}

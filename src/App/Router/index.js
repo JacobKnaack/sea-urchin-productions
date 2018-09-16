@@ -7,11 +7,11 @@ import Blog from './Blog'
 import BlogPost from './BlogPost'
 
 const Router = (props) => {
-  let { channelContent, blogContent, selectPost } = props
+  let { channelContent, blogContent } = props
   return (
     <Switch>
       <Route exact path='/' render={(props) => (
-        <Home {...props} channelContent={channelContent} blogContent={blogContent} selectPost={selectPost} />
+        <Home {...props} channelContent={channelContent} blogContent={blogContent} />
       )} />
       <Route path='/blog' render={(props) => (
         <Blog {...props} channelContent={channelContent} />

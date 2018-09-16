@@ -155,6 +155,72 @@
   background-size: cover;
 }
 
+.article-post .article-body {
+  padding: 0 25px;
+}
+
+.article-body p {
+  font-size: 125%;
+  line-height: 35px;
+  margin: 20px 40px 40px 40px;
+  text-align: left;
+}
+
+.article-body strong {
+  color: #359199;
+}
+
+.article-body p img, .article-body h2 img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 10px auto;
+  border-radius: 1%;
+  box-shadow: 3px 3px 5px #a9a9a9;
+}
+
+.article-body .firstLetter {
+  font-family: 'shrikhand', serif;
+  font-size: 350%;
+  padding: 0 0 10px 30px;
+  color: #a9a9a9;
+}
+
+.article-post h2, .article-post h2 {
+  font-size: 175%;
+  text-align: left;
+  line-height: 40px;
+  margin: 0 40px;
+  color: #0F70B2;
+}
+
+.article-body h3, .article-body h4, .article-body h5, .article-body h6 {
+  font-size: 150%;
+  text-align: left;
+  line-height: 40px;
+  margin: 0 40px;
+  color: #0F70B2;
+}
+
+.article-body ul {
+  margin: -20px 0 30px 20px;
+}
+
+.article-body li {
+  font-size: 125%;
+  text-align: left;
+  line-height: 25px;
+  margin: 10px;
+}
+
+.article-body blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019"
+}
+
 @media(max-width: 650px) {
   /* .App-title {
     font-size: 200%;
