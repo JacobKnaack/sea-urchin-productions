@@ -62,6 +62,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .Home-nav-filter {
@@ -175,7 +176,7 @@
   color: #359199;
 }
 
-.article-body p img, .article-body h2 img {
+.article-body p img, .article-body h2 img, .article-body h3 img, .article-body h4 img, .article-body h5 img {
   max-width: 90%;
   height: auto;
   display: block;
@@ -227,9 +228,19 @@
 }
 
 @media(max-width: 650px) {
-  /* .App-title {
-    font-size: 200%;
-  } */
+  .Feature-carousel-image {
+    left: 5px;
+  }
+
+  .Feature-carousel-description {
+    width: 80% !important;
+    left: 20px !important;
+    padding: 20px !important;
+  }
+
+  .search-bar-container {
+    width: 90%;
+  }
 
   .postItem-container {
     width: calc(1000vw - 20px) !important;
@@ -251,5 +262,8 @@
 @media(max-width: 475px) {
   .App-title {
     font-size: 170%;
+  }
+  .messenger-container {
+    top: 7% !important;
   }
 }
