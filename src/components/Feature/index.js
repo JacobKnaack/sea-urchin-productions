@@ -55,7 +55,10 @@ class Carousel extends React.Component {
 
           return (
             <div key={item.title || Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5)} className={displayClasses}>
-              <h2 className="Feature-carousel-title">{item.title}</h2>
+              <div>
+                <h2 className="Feature-carousel-title">{item.title}</h2>
+                <p className="Feature-carousel-description">{item.description}</p>
+              </div>
               {item.imageUrl === "loading"
                 ? "...Loading"
                 : <img
@@ -64,7 +67,7 @@ class Carousel extends React.Component {
                   alt={`${itemImageUrl}`}
                 />
               }
-              <p className="Feature-carousel-description">{item.description}</p>
+              {/* <p className="Feature-carousel-description">{item.description}</p> */}
             </div>
           )
         })}
