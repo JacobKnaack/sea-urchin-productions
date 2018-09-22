@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import dateFormat from 'dateformat'
 import PropTypes from 'prop-types'
 
@@ -126,6 +127,25 @@ class BlogPost extends React.Component {
         margin: '0 40px',
         padding: '30px 0',
       },
+
+      closeBtn: {
+        position: 'fixed',
+        right: '9%',
+        top: '1%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: '50%',
+        width: '50px',
+        height: '50px',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        color: '#ffffff',
+        backgroundColor: '#399198',
+        fontSize: '80%',
+        boxShadow: '0 4px 2px -2px gray',
+      },
     }
 
     let ProfileImageEl
@@ -144,6 +164,10 @@ class BlogPost extends React.Component {
         className="blogPost-container"
         style={Styles.container}
       >
+        <Link to="/" style={Styles.closeBtn}>
+          <i className="fas fa-times"></i>
+          Close
+        </Link>
         <div className="post-menu" ref={this.topRef}>
 
         </div>
