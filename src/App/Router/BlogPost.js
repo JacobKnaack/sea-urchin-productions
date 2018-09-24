@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import dateFormat from 'dateformat'
 import PropTypes from 'prop-types'
 
+import DisqusThread from '../../components/DisqusThread'
+
 class BlogPost extends React.Component {
   constructor(props) {
     super(props)
@@ -26,7 +28,6 @@ class BlogPost extends React.Component {
   }
 
   render() {
-    const post = this.filterPostData()
     const Styles = {
       container: {
         width: '100%',
@@ -148,6 +149,7 @@ class BlogPost extends React.Component {
       },
     }
 
+    const post = this.filterPostData()
     let ProfileImageEl
     if (post.author) {
       if (post.author.profile_image) {
@@ -207,6 +209,12 @@ class BlogPost extends React.Component {
             <p style={Styles.videoDescription}>{post.description}</p>
           </div>
         }
+        {/* <div id="disqus_thread" /> */}
+        <DisqusThread
+          id={post.id || post.url}
+          title={post.title}
+          path={window.location.href}
+        />
       </div>
     )
   }
