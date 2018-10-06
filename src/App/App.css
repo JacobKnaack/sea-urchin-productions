@@ -259,11 +259,14 @@
   }
 }
 
-@media(max-width: 475px) {
+@media(max-width: 476px) {
   .App-title {
     font-size: 170%;
   }
   .messenger-container {
-    top: 7% !important;
+    top: 75px !important;
+  }
+  .article-body p {
+    margin: 20px 0 40px 0;
   }
 }

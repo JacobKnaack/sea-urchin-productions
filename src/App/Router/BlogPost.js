@@ -4,6 +4,7 @@ import dateFormat from 'dateformat'
 import PropTypes from 'prop-types'
 
 import DisqusThread from '../../components/DisqusThread'
+import Styles from './styles/_blogPost'
 
 class BlogPost extends React.Component {
   constructor(props) {
@@ -12,8 +13,11 @@ class BlogPost extends React.Component {
     this.state = {
       postData: this.props.posts || {},
       selectedPost: this.props.match.params.postId || '',
+      width: 0,
+      height: 0,
     }
 
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
     this.filterPostData = this.filterPostData.bind(this)
   }
 
@@ -25,130 +29,19 @@ class BlogPost extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, this.topRef)
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   render() {
-    const Styles = {
-      container: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: '#ffffff',
-        borderRadius: "5px",
-        paddingBottom: '50px',
-      },
-
-      postHeading: {
-        minHeight: '300px',
-        width: '100%',
-        display: 'flex',
-        backgroundColor: '#464754',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        marginBottom: '40px',
-      },
-
-      meta: {
-        height: '65px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        paddingLeft: '12%',
-        marginTop: '20px',
-      },
-
-      postTitle: {
-        width: '75%',
-        fontSize: '225%',
-        lineHeight: '50px',
-        textAlign: 'left',
-        margin: '0 auto',
-        color: '#ffffff',
-      },
-
-      divider: {
-        margin: '15px 0 0 12%',
-        height: '10px',
-        width: '175px',
-        backgroundColor: '#03F2FD',
-      },
-
-      metaDivider: {
-        fontSize: '225%',
-        color: '#03F2FD',
-        height: '100%',
-        lineHeight: '65px',
-        margin: '0 10px 0 10px',
-      },
-
-      authorName: {
-        fontFamily: 'Arvo, serif',
-        color: '#d3d3d3',
-        height: '100%',
-        lineHeight: '65px',
-      },
-
-      postDate: {
-        fontFamily: 'Arvo, serif',
-        color: '#a9a9a9',
-        height: '100%',
-        lineHeight: '65px',
-      },
-
-      profileImage: {
-        color: '#ffffff',
-        margin: '10px',
-        fontSize: '200%',
-        maxWidth: '75px',
-        borderRadius: '50%',
-      },
-
-      videoPost: {
-        backgroundColor: '#464754',
-      },
-
-      videoHeading: {
-        height: '200px',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      },
-
-      videoEmbedded: {
-        outline: 'none',
-        border: 'none',
-        minHeight: '500px',
-      },
-
-      videoDescription: {
-        color: '#ffffff',
-        fontSize: '150%',
-        textAlign: 'left',
-        margin: '0 40px',
-        padding: '30px 0',
-      },
-
-      closeBtn: {
-        position: 'fixed',
-        right: '9%',
-        top: '1%',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '50%',
-        width: '50px',
-        height: '50px',
-        cursor: 'pointer',
-        textDecoration: 'none',
-        color: '#ffffff',
-        backgroundColor: '#399198',
-        fontSize: '80%',
-        boxShadow: '0 4px 2px -2px gray',
-      },
-    }
-
     const post = this.filterPostData()
     let ProfileImageEl
     if (post.author) {
@@ -166,8 +59,8 @@ class BlogPost extends React.Component {
         className="blogPost-container"
         style={Styles.container}
       >
-        <Link to="/" style={Styles.closeBtn}>
-          <i className="fas fa-times"></i>
+        <Link to="/" style={this.state.width >= 475 ? Styles.closeBtn : Styles.closeBtnMobile}>
+          <i className="fas fa-home"></i>
           Close
         </Link>
         <div className="post-menu" ref={this.topRef}>
@@ -209,7 +102,6 @@ class BlogPost extends React.Component {
             <p style={Styles.videoDescription}>{post.description}</p>
           </div>
         }
-        {/* <div id="disqus_thread" /> */}
         <DisqusThread
           id={post.id || post.url}
           title={post.title}
