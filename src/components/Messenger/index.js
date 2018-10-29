@@ -1,4 +1,5 @@
 import React from 'react'
+import "./_messenger.css"
 
 class Messenger extends React.Component {
   constructor() {
@@ -118,7 +119,7 @@ class Messenger extends React.Component {
       >
         {!this.state.open
           ? <i
-            className="far fa-comments"
+            className="fas fa-envelope"
             style={Styles.messageIcon}
             onClick={this.openMessenger}></i>
           : <form
