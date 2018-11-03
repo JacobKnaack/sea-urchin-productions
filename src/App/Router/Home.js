@@ -78,6 +78,8 @@ class Home extends React.Component {
 
       return 'Home-nav-filter-item'
     }
+
+    const homeContent = displayItems()
     return (
       <div>
         <Feature
@@ -106,15 +108,23 @@ class Home extends React.Component {
               onChange={(e) => this.setState({ query: e.target.value })} />
           </div>
         </nav>
-        <div className="Home-content">
-          {displayItems().map(postData => (
-            <PostItem
-              key={postData.video ? postData.video.id.videoId : postData.url}
-              type={postData.video ? "video" : "article"}
-              postData={postData}
-            />
-          ))}
-        </div>
+        {homeContent.length
+          ? <div className="Home-content">
+            {homeContent.map(postData => (
+              <PostItem
+                key={postData.video ? postData.video.id.videoId : postData.url}
+                type={postData.video ? "video" : "article"}
+                postData={postData}
+              />
+            ))}
+          </div>
+          : <div className="Home-content-empty">
+            {this.state.query.length
+              ? <h2>No results</h2>
+              : <h2>Loading...</h2>
+            }
+          </div>
+        }
       </div>
     )
   }

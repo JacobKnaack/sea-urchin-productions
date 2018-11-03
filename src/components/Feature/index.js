@@ -111,9 +111,9 @@ class Carousel extends React.Component {
 }
 
 const Feature = (props) => {
-  const recentPosts = () => {
-    if (props.blogData) {
-      const sortedData = props.blogData.sort((a, b) => {
+  const recentPosts = (posts) => {
+    if (posts) {
+      const sortedData = posts.sort((a, b) => {
         return new Date(b.published) - new Date(a.published)
       })
       return [
@@ -123,17 +123,20 @@ const Feature = (props) => {
     }
     return "awaiting Blog Data"
   }
-  const recentVideo = () => {
+
+  const recentVideo = (videos) => {
     let result = {
       imageUrl: "loading",
       description: "loading",
+      id: null,
     }
 
-    if (props.channelContent.length) {
-      const sortedContent = props.channelContent.slice().sort((a, b) => {
-        return a.published < b.published ? 1 : -1
+    if (videos.length) {
+      const sortedContent = videos.slice().sort((a, b) => {
+        return a.snippet.publishedAt < b.snippet.publishedAt ? 1 : -1
       })
       result = {
+        title: sortedContent[0].snippet.title,
         imageUrl: sortedContent[0].snippet.thumbnails.high.url,
         description: sortedContent[0].snippet.description,
         id: sortedContent[0].id.videoId,
@@ -143,28 +146,29 @@ const Feature = (props) => {
     return result
   }
 
-
+  const posts = recentPosts(props.blogData)
+  const video = recentVideo(props.channelContent)
   return (
     <div className="feature">
       <Carousel
         items={[
           {
-            imageUrl: recentPosts()[0].featured_image,
-            title: recentPosts()[0].title,
-            description: recentPosts()[0].summary,
-            link: recentPosts()[0].url
+            title: posts[0].title,
+            imageUrl: posts[0].featured_image,
+            description: posts[0].summary,
+            link: posts[0].url
           },
           {
-            imageUrl: recentPosts()[1].featured_image,
-            title: recentPosts()[1].title,
-            description: recentPosts()[1].summary,
-            link: recentPosts()[1].url,
+            title: posts[1].title,
+            imageUrl: posts[1].featured_image,
+            description: posts[1].summary,
+            link: posts[1].url,
           },
           {
-            imageUrl: recentVideo().imageUrl,
-            title: 'Recent Videos',
-            description: recentVideo().description,
-            link: recentVideo().id,
+            title: `Recent Video: ${video.title}`,
+            imageUrl: video.imageUrl,
+            description: video.description,
+            link: video.id,
           },
         ]}
       />
