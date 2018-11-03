@@ -11,7 +11,7 @@ const Subscribe = ({ handleSubmit, status, message, inputChange, email, firstNam
       }
       {status === 'error' &&
         <div className="subscribeFeedback failure">
-          <p>{message}</p>
+          <p dangerouslySetInnerHTML={{ __html: message }} />
         </div>
       }
       {status === 'success' &&
@@ -27,7 +27,7 @@ const Subscribe = ({ handleSubmit, status, message, inputChange, email, firstNam
         noValidate
       >
         <div id="mc_embed_signup_scroll" >
-          <h2>Subscribe to our mailing list</h2>
+          <h2>Subscribe to our Mailing List!</h2>
           <div className="indicates-required"><span className="asterisk">*</span> indicates required</div>
           <div className="mc-field-group">
             <label

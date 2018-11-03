@@ -19,11 +19,7 @@
 }
 
 .App-header {
-  /* background: url('../assets/images/pebble-beach.JPG'); */
   background-color: white;
-  /* background-position: center;
-  background-size: 100% auto;
-  background-repeat: no-repeat; */
   height: 75px;
   padding-top: 10px;
   color: #359199;
@@ -40,7 +36,12 @@
 }
 
 .App-header-sub {
-  margin: 0 auto;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 0 0 90px;
+  text-align: left;
+  font-size: 120%;
+  color: #a9a9a9;
 }
 
 .App-title {
@@ -246,6 +247,10 @@
     width: calc(1000vw - 20px) !important;
   }
 
+  .App-title {
+    font-size: 170%;
+  }
+
   .App-logo {
     height: 40px;
   }
@@ -253,16 +258,9 @@
   .Header-title {
     height: 50px;
   }
-
-  .App-header {
-    min-height: 100px;
-  }
 }
 
 @media(max-width: 476px) {
-  .App-title {
-    font-size: 170%;
-  }
   .messenger-container {
     top: 75px !important;
   }

@@ -89,7 +89,7 @@ class Home extends React.Component {
         <nav className="Home-nav">
           <ul className="Home-nav-filter">
             <li className={isNavItemActive('recent')} onClick={() => this.setFilter('recent')}>
-              <p className="filter-name">Recent</p>
+              <p className="filter-name">Most Recent</p>
             </li>
             <li className={isNavItemActive('videos')} onClick={() => this.setFilter('videos')}>
               <p className="filter-name">Videos</p>
