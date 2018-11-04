@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import Butter from 'buttercms'
-// import Feature from '../components/Feature'
-// import ContentList from '../components/ContentList'
-// import Post from '../components/Post'
 import Footer from '../components/Footer'
 import Messenger from '../components/Messenger'
 import Router from './Router'
@@ -21,13 +18,13 @@ class App extends Component {
 
   componentWillMount() {
     fetch(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDleGdEZLlURoFgCDs6OXFMjSCpvi3gfIw&channelId=UCG71-DN0mFrGvoLrtuSRLwA&part=snippet,id&order=date&maxResults=20`)
-      .then(resp => resp.json())
-      .then((resp) => {
-        this.setState({ channelContent: resp.items })
+      .then(res => res.json())
+      .then((res) => {
+        this.setState({ channelContent: res.items })
       })
     butter.post.list()
-      .then(response => {
-        this.setState({ blogContent: response.data })
+      .then(posts => {
+        this.setState({ blogContent: posts.data })
       })
   }
 
@@ -50,6 +47,7 @@ class App extends Component {
           <Router
             channelContent={this.state.channelContent}
             blogContent={this.state.blogContent}
+            butter={butter}
           />
         </div>
         <Footer />
