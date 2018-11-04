@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const SHORTNAME = 'sea-urchin-players'
-const WEBSITE_URL = 'http://localhost:3000'
+let SHORTNAME = 'sea-urchin-players'
+let WEBSITE_URL = 'https://seaurchinplayers.com'
+if (process.env.NODE_ENV !== 'production') {
+  WEBSITE_URL = 'http://localhost:3000'
+}
 
 function renderDisqus() {
   if (window.DISQUS === undefined) {
@@ -34,7 +37,6 @@ class DisqusThread extends React.Component {
 
   render() {
     let { id, title, path } = this.props
-
     if (process.env.BROWSER) {
       window.disqus_shortname = SHORTNAME
       window.disqus_identifier = id

@@ -112,7 +112,7 @@ class BlogPost extends React.Component {
   }
 
   filterPostData() {
-    let data = {}
+    let data = { id: "loading", title: "loading" }
     const { selectedPost, postData } = this.state
     for (const post in postData) {
       if (postData[post]) {
@@ -131,7 +131,7 @@ class BlogPost extends React.Component {
             thumbnail: postData[post].snippet.thumbnails.high.url,
           }
         }
-      } else data = 'loading'
+      }
     }
 
     return data
