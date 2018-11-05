@@ -31,17 +31,28 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
+  <div id="xmlFeed" style="display: none;"></div>
   <div id="root"></div>
   <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
+    This HTML file is a template.
+    If you open it directly in the browser, you will see an empty page.
+    
+    You can add webfonts, meta tags, or analytics to this file.
+    The build step will place the bundled scripts into the <body> tag.
+      
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("https://api.buttercms.com/v2/feeds/rss/?auth_token=283702b3276b10a88e38bf31e3356505f663bb1b")
+        .then(res => res.json())
+        .then(xml => {
+          document.getElementById("xmlFeed").innerHTML = xml.data
+        })
+        .catch(error => console.log(error))
+    })
+  </script>
   <div class="bottomPadding">
 </body>
 
