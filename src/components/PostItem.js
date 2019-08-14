@@ -20,18 +20,6 @@ const PostItem = (props) => {
   }
 
   const Styles = {
-    container: {
-      width: "calc(50vw - 80px)",
-      minHeight: "300px",
-      margin: "20px",
-      padding: "20px",
-      textAlign: "right",
-      transition: '0.3s ease-in-out',
-      borderRadius: '10px',
-      cursor: 'pointer',
-      textDecoration: 'none',
-    },
-
     title: {
       fontFamily: "'Arvo', serif",
       color: 'white',
@@ -78,7 +66,7 @@ const PostItem = (props) => {
 
     info: {
       display: 'flex',
-      minHeight: '200px',
+      minHeight: '400px',
       width: '100%',
       margin: '5px auto 0 auto',
       color: 'white',
@@ -115,7 +103,6 @@ const PostItem = (props) => {
       className="postItem-container"
       style={Styles.container}
       to={`/post/${postId()}`}
-    // onClick={() => selectPost(postData)} THIS CAME FROM PROPS, Grab it from line 8 if you need it.
     >
       {type === 'video'
         ? (
