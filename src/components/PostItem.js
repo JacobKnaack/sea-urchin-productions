@@ -60,7 +60,7 @@ const PostItem = (props) => {
     },
 
     headerTextContainer: {
-      width: '80%',
+      width: 'calc(80% - 10px)',
       textAlign: 'left',
     },
 

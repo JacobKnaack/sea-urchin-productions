@@ -124,7 +124,7 @@ const Styles = {
   closeBtnMobile: {
     position: 'fixed',
     right: '10px',
-    top: '10px',
+    top: '5px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',

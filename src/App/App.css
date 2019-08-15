@@ -277,9 +277,14 @@
 
 @media(max-width: 476px) {
   .messenger-container {
-    top: 75px !important;
+    top: 60px !important;
+    right: 20px;
   }
   .article-body p {
     margin: 20px 0 40px 0;
+  }
+  .postItem-container {
+    width: calc(100vw - 70px) !important;
+    margin: 20px;
   }
 }
